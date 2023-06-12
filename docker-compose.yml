@@ -1,0 +1,27 @@
+version: "3.1"
+
+services:
+  php-fpm:
+    build:
+      context: docker/php-fpm
+    container_name: teamquotes-webserver
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      - WEB_DOCUMENT_ROOT=/app/webroot
+    ports:
+      - "80:80"
+
+  mysql:
+    image: mariadb:10.5.8
+    container_name: teamquotes-mysql
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./tmp/data/mysql_db:/var/lib/mysql
+    env_file:
+      - docker/mysql.env
+    #command: mysqld --character-set-server=utf8 --init-connect='SET NAMES UTF8;'
+    ports:
+      - "3306:3306"
