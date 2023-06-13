@@ -1,14 +1,24 @@
+<?php
+/**
+ * @var $this View
+ * @var $article Article
+ */
+
+use App\Model\Entity\Article;
+use Cake\View\View;
+?>
+
 <section class="vh-100" style="background-color: #eee;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-9 col-xl-7">
+            <div class="col col-lg-10">
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
                         <figure class="text-center mb-0">
                             <blockquote class="blockquote">
                                 <p class="pb-3">
-                                    <i class="fas fa-quote-left fa-xs text-primary"></i>
-                                    <span class="fs-1">
+                                    <i class="fas fa-quote-left fa-s text-primary"></i>
+                                    <span style="font-size: 70px;">
                                         <?= h($article->body) ?>
                                     </span>
                                     <i class="fas fa-quote-right fa-xs text-primary"></i>
