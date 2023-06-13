@@ -17,11 +17,9 @@ use Cake\View\View;
                         <figure class="text-center mb-0">
                             <blockquote class="blockquote">
                                 <p class="pb-3">
-                                    <i class="fas fa-quote-left fa-s text-primary"></i>
                                     <span style="font-size: 70px;">
                                         <?= h($article->body) ?>
                                     </span>
-                                    <i class="fas fa-quote-right fa-xs text-primary"></i>
                                 </p>
                             </blockquote>
                             <figcaption class="blockquote-footer mb-0">
