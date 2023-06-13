@@ -27,7 +27,7 @@ class ArticlesController extends AppController
     public function random()
     {
         $this->viewBuilder()->setLayout('bootstrap');
-        $article = $this->Articles->find('all')->order('rand()')->limit(1)->first();
+        $article = $this->Articles->find()->where(['published' => 1])->order('rand()')->limit(1)->first();
         $this->set(compact('article'));
     }
 
@@ -42,10 +42,10 @@ class ArticlesController extends AppController
             $article->user_id = 1;
 
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('Your article has been saved.'));
+                $this->Flash->success(__('Your quote has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Unable to add your article.'));
+            $this->Flash->error(__('Unable to add your quote.'));
         }
         $this->set('article', $article);
     }
@@ -59,23 +59,12 @@ class ArticlesController extends AppController
         if ($this->request->is(['post', 'put'])) {
             $this->Articles->patchEntity($article, $this->request->getData());
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('Your article has been updated.'));
+                $this->Flash->success(__('Your quote has been updated.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Unable to update your article.'));
+            $this->Flash->error(__('Unable to update your quote.'));
         }
 
         $this->set('article', $article);
-    }
-
-    public function delete($slug)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-
-        $article = $this->Articles->findBySlug($slug)->firstOrFail();
-        if ($this->Articles->delete($article)) {
-            $this->Flash->success(__('The {0} article has been deleted.', $article->title));
-            return $this->redirect(['action' => 'index']);
-        }
     }
 }
