@@ -57,10 +57,13 @@ return static function (RouteBuilder $routes) {
          */
         $builder->connect('/pages/*', 'Pages::display');
 
-        $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index', 'articles_home']);
-        $builder->connect('/articles/random', ['controller' => 'Articles', 'action' => 'random', 'articles_random']);
-        $builder->connect('/articles/view/:slug', ['controller' => 'Articles', 'action' => 'view', 'articles_view']);
-        $builder->connect('/articles/edit/:slug', ['controller' => 'Articles', 'action' => 'edit', 'articles_edit']);
+        $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index'],['_name' => 'articles_home']);
+        $builder->connect('/articles/add', ['controller' => 'Articles', 'action' => 'add'],['_name' =>  'articles_add']);
+        $builder->connect('/articles/random', ['controller' => 'Articles', 'action' => 'random'],['_name' =>  'articles_random']);
+        $builder->connect('/articles/view/{slug}', ['controller' => 'Articles', 'action' => 'view'],['_name' =>  'articles_view'])
+            ->setPass(['slug']);
+        $builder->connect('/articles/edit/{slug}', ['controller' => 'Articles', 'action' => 'edit'],['_name' =>  'articles_edit'])
+            ->setPass(['slug']);
 
         /*
          * Connect catchall routes for all controllers.
@@ -75,7 +78,7 @@ return static function (RouteBuilder $routes) {
          * You can remove these routes once you've connected the
          * routes you want in your application.
          */
-        $builder->fallbacks();
+//        $builder->fallbacks();
     });
 
     /*

@@ -6,7 +6,7 @@
 ?>
 
 <h1>Quotes</h1>
-<a href="<?= $this->Url->build(['action' => 'add']) ?>" class="button">Add Quote</a>
+<a href="<?= $this->Url->build(['_name' => 'articles_add']) ?>" class="button">Add Quote</a>
 <table>
     <?php foreach ($articles as $article): ?>
         <tr>
