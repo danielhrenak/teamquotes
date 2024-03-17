@@ -57,6 +57,11 @@ return static function (RouteBuilder $routes) {
          */
         $builder->connect('/pages/*', 'Pages::display');
 
+        $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index', 'articles_home']);
+        $builder->connect('/articles/random', ['controller' => 'Articles', 'action' => 'random', 'articles_random']);
+        $builder->connect('/articles/view/:slug', ['controller' => 'Articles', 'action' => 'view', 'articles_view']);
+        $builder->connect('/articles/edit/:slug', ['controller' => 'Articles', 'action' => 'edit', 'articles_edit']);
+
         /*
          * Connect catchall routes for all controllers.
          *
