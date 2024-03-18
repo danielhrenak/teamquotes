@@ -11,9 +11,12 @@ use Cake\View\View;
 <section class="vh-100" style="background-color: #eee;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-10">
+            <div class="col col-lg-12">
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
+                        <?php if ($article->image) { ?>
+                            <?= $this->Html->image('upload/' . $article->image, ['alt' => $article->title, 'width' => '100%' ]) ?>
+                        <?php } else  { ?>
                         <figure class="text-center mb-0">
                             <blockquote class="blockquote">
                                 <p class="pb-3">
@@ -26,7 +29,7 @@ use Cake\View\View;
                                <?= h($article->title) ?>
                             </figcaption>
                         </figure>
-
+                        <?php } ?>
                     </div>
                 </div>
             </div>

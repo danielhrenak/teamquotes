@@ -18,6 +18,11 @@
                 <?php } ?>
             </td>
             <td>
+                <?php if ($article->image) { ?>
+                    <?= $this->Html->image('upload/' . $article->image, ['alt' => $article->title, 'width' => 100]) ?>
+                <?php } ?>
+            </td>
+            <td>
                 <?= $this->Html->link($article->body, ['action' => 'view', $article->slug]) ?>
                 <br/>
                 <?= h($article->title) ?>

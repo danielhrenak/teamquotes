@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use Cake\Http\ServerRequest;
+
 class ArticlesController extends AppController
 {
+    private const IMAGE_FOLDER = 'img' . DS . 'upload' . DS;
+
     public function initialize(): void
     {
         parent::initialize();
@@ -31,11 +35,18 @@ class ArticlesController extends AppController
         $this->set(compact('article'));
     }
 
+    public function getImageFromRequest(ServerRequest $request): string {
+        $file = $request->getData('image');
+        $file->moveTo(WWW_ROOT . self::IMAGE_FOLDER . $file->getClientFilename());
+        return $file->getClientFilename();
+    }
+
     public function add()
     {
         $article = $this->Articles->newEmptyEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
+            $article->image = $this->getImageFromRequest($this->request);
 
             // Hardcoding the user_id is temporary, and will be removed later
             // when we build authentication out.
