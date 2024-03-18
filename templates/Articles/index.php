@@ -32,4 +32,13 @@
             </td>
         </tr>
     <?php endforeach; ?>
+    <!-- Here is where we add the pages -->
+    <tr>
+        <td colspan="2">
+            <?= $this->Paginator->prev('Previous page') ?>
+        </td>
+        <td colspan="2">
+            <?= $this->Paginator->next('Next page') ?>
+        </td>
+    </tr>
 </table>
