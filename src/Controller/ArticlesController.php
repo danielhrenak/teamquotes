@@ -37,8 +37,9 @@ class ArticlesController extends AppController
 
     public function getImageFromRequest(ServerRequest $request): string {
         $file = $request->getData('image');
-        $file->moveTo(WWW_ROOT . self::IMAGE_FOLDER . $file->getClientFilename());
-        return $file->getClientFilename();
+        $imageName = rand(0, 100) . "_" . $file->getClientFilename();
+        $file->moveTo(WWW_ROOT . self::IMAGE_FOLDER . $imageName);
+        return $imageName;
     }
 
     public function add()
