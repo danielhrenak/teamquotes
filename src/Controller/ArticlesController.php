@@ -45,8 +45,10 @@ class ArticlesController extends AppController
     {
         $article = $this->Articles->newEmptyEntity();
         if ($this->request->is('post')) {
-            $article = $this->Articles->patchEntity($article, $this->request->getData());
             $article->image = $this->getImageFromRequest($this->request);
+            $article->body = $this->request->getData('body');
+            $article->title = $this->request->getData('title');
+            $article->published = $this->request->getData('published');
 
             // Hardcoding the user_id is temporary, and will be removed later
             // when we build authentication out.

@@ -15,7 +15,9 @@ use Cake\View\View;
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
                         <?php if ($article->image) { ?>
-                            <?= $this->Html->image('upload/' . $article->image, ['alt' => $article->title, 'width' => '100%' ]) ?>
+                            <div class="text-center mb-5">
+                            <?= $this->Html->image('upload/' . $article->image, ['alt' => $article->title]) ?>
+                            </div>
                         <?php } else  { ?>
                         <figure class="text-center mb-0">
                             <blockquote class="blockquote">
