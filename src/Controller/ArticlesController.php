@@ -2,8 +2,15 @@
 
 namespace App\Controller;
 
+use App\Model\Entity\Article;
+use App\Model\Table\ArticlesTable;
 use Cake\Http\ServerRequest;
+use Cake\I18n\FrozenTime;
+use Laminas\Diactoros\UploadedFile;
 
+/**
+ * @property ArticlesTable $Articles
+ */
 class ArticlesController extends AppController
 {
     private const IMAGE_FOLDER = 'img' . DS . 'upload' . DS;
@@ -18,12 +25,17 @@ class ArticlesController extends AppController
 
     public function index()
     {
-        $articles = $this->Paginator->paginate($this->Articles->find());
+        $articlesQuery = $this->Articles->find();
+        if ($this->request->getQuery('published')) {
+            $articlesQuery->where(['published_until >' => FrozenTime::now()]);
+        }
+        $articles = $this->Paginator->paginate($articlesQuery);
         $this->set(compact('articles'));
     }
 
     public function view($slug)
     {
+        $this->viewBuilder()->setLayout('bootstrap');
         $article = $this->Articles->findBySlug($slug)->firstOrFail();
         $this->set(compact('article'));
     }
@@ -36,7 +48,12 @@ class ArticlesController extends AppController
     }
 
     public function getImageFromRequest(ServerRequest $request): string {
+        /** @var UploadedFile $file */
         $file = $request->getData('image');
+        if ($file->getError() !== UPLOAD_ERR_OK) {
+            return '';
+        }
+
         $imageName = rand(0, 100) . "_" . $file->getClientFilename();
         $file->moveTo(WWW_ROOT . self::IMAGE_FOLDER . $imageName);
         return $imageName;
@@ -44,12 +61,14 @@ class ArticlesController extends AppController
 
     public function add()
     {
+        /** @var Article $article */
         $article = $this->Articles->newEmptyEntity();
         if ($this->request->is('post')) {
+            $publishedUntil = FrozenTime::now()->addDays($this->request->getData('published_until'));
             $article->image = $this->getImageFromRequest($this->request);
             $article->body = $this->request->getData('body');
             $article->title = $this->request->getData('title');
-            $article->published = $this->request->getData('published');
+            $article->published_until = $publishedUntil;
 
             // Hardcoding the user_id is temporary, and will be removed later
             // when we build authentication out.
@@ -80,5 +99,25 @@ class ArticlesController extends AppController
         }
 
         $this->set('article', $article);
+    }
+
+    public function hide($articleId)
+    {
+        /** @var Article $article */
+        $article = $this->Articles->get($articleId);
+        $article->hide();
+        $this->Articles->save($article);
+        $this->Flash->success(__('The quote has been hidden.'));
+        return $this->redirect(['action' => 'index']);
+    }
+
+    public function addDays($articleId, $days)
+    {
+        /** @var Article $article */
+        $article = $this->Articles->get($articleId);
+        $article->showFor($days);
+        $this->Articles->save($article);
+        $this->Flash->success(__('The quote has been shown for {0} days.', $days));
+        return $this->redirect(['action' => 'index']);
     }
 }

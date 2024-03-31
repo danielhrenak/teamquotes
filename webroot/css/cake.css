@@ -2,6 +2,7 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
+    font-size: 1.5rem;
 }
 
 .top-nav-links,
@@ -110,7 +111,7 @@ th {
 
 /* Flash messages */
 .message {
-    padding: 1rem;
+    padding: 0.5rem;
 
     background: #eff8ff;
     color: #2779bd;

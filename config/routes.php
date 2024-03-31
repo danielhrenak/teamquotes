@@ -60,11 +60,14 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index'],['_name' => 'articles_home']);
         $builder->connect('/articles/add', ['controller' => 'Articles', 'action' => 'add'],['_name' =>  'articles_add']);
         $builder->connect('/articles/random', ['controller' => 'Articles', 'action' => 'random'],['_name' =>  'articles_random']);
-        $builder->connect('/articles/view/{slug}', ['controller' => 'Articles', 'action' => 'view'],['_name' =>  'articles_view'])
+        $builder->connect('/articles/{slug}/view', ['controller' => 'Articles', 'action' => 'view'],['_name' =>  'articles_view'])
             ->setPass(['slug']);
-        $builder->connect('/articles/edit/{slug}', ['controller' => 'Articles', 'action' => 'edit'],['_name' =>  'articles_edit'])
+        $builder->connect('/articles/{slug}/edit', ['controller' => 'Articles', 'action' => 'edit'],['_name' =>  'articles_edit'])
             ->setPass(['slug']);
-
+        $builder->connect('/articles/{articleId}/hide/', ['controller' => 'Articles', 'action' => 'hide'],['_name' =>  'articles_hide'])
+            ->setPass(['articleId']);
+        $builder->connect('/articles/{articleId}/add-days/{days}', ['controller' => 'Articles', 'action' => 'addDays'],['_name' =>  'articles_add_days'])
+            ->setPass(['articleId', 'days']);
         /*
          * Connect catchall routes for all controllers.
          *
