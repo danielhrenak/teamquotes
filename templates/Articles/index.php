@@ -34,9 +34,12 @@ use Cake\I18n\FrozenTime;
                 <?php } ?>
             </td>
             <td>
-                <?= $this->Html->link($article->body, ['action' => 'view', $article->slug]) ?>
+                <?= h($article->body) ?>
                 <br/>
                 <?= h($article->title) ?>
+            </td>
+            <td>
+                <?= $this->Html->link('View', ['action' => 'view', $article->slug], ['class' => 'message info']) ?>
             </td>
             <td>
                 ➡️&nbsp;<a href="<?= $this->Url->build(['action' => 'addDays', $article->id, 7]) ?>">7&nbsp;more&nbsp;days</a>
