@@ -108,7 +108,7 @@ class ArticlesController extends AppController
         $article->hide();
         $this->Articles->save($article);
         $this->Flash->success(__('The quote has been hidden.'));
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect( $this->request->referer());
     }
 
     public function addDays($articleId, $days)
@@ -118,6 +118,6 @@ class ArticlesController extends AppController
         $article->showFor($days);
         $this->Articles->save($article);
         $this->Flash->success(__('The quote has been shown for {0} days.', $days));
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect( $this->request->referer());
     }
 }

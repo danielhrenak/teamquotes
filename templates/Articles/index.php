@@ -20,19 +20,12 @@ use Cake\I18n\FrozenTime;
         <tr>
             <td>
                 <?php if ($article->isPublished()) { ?>
-                    <span class="message success">Published</span>
+                    <span style="color: green">✅&nbsp;Published
 
-                    Hide after
-                    <span class="message info">
-                    <?= $article->published_until->diffForHumans(FrozenTime::now(), true); ?>
-                    </span>
                     <br>
-                    <?= $this->Html->link('Hide now', ['action' => 'hide', $article->id]) ?>
+                    ⏰ <?= $article->published_until->diffForHumans(FrozenTime::now(), true); ?>
                 <?php } else { ?>
-                    <span class="message error">Hidden</span>
-
-                    Show for
-                    <a href="<?= $this->Url->build(['action' => 'addDays', $article->id, 7]) ?>" class="message info">7 days</a>
+                    <span style="color: red">⛔️&nbsp;Hidden</span>
                 <?php } ?>
             </td>
             <td>
@@ -44,6 +37,14 @@ use Cake\I18n\FrozenTime;
                 <?= $this->Html->link($article->body, ['action' => 'view', $article->slug]) ?>
                 <br/>
                 <?= h($article->title) ?>
+            </td>
+            <td>
+                ➡️&nbsp;<a href="<?= $this->Url->build(['action' => 'addDays', $article->id, 7]) ?>">7&nbsp;more&nbsp;days</a>
+
+                <?php if ($article->isPublished()) { ?>
+                    <br>
+                ⛔️ <?= $this->Html->link("Hide", ['action' => 'hide', $article->id]) ?>
+                <?php } ?>
             </td>
         </tr>
     <?php endforeach; ?>
