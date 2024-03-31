@@ -34,9 +34,9 @@ use Cake\I18n\FrozenTime;
                 <?php } ?>
             </td>
             <td>
-                <?= h($article->body) ?>
+                "<?= h($article->body) ?>"
                 <br/>
-                <?= h($article->title) ?>
+                <strong><?= h($article->title) ?></strong>
             </td>
             <td>
                 <?= $this->Html->link('View', ['action' => 'view', $article->slug], ['class' => 'message info']) ?>
