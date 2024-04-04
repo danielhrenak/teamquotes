@@ -12,7 +12,7 @@ use Cake\I18n\FrozenTime;
 <a href="<?= $this->Url->build(['_name' => 'articles_add']) ?>" class="button">Add Quote</a>
 
 <div>
-    Show only quotes that are published: <a href="<?= $this->Url->build(['action' => 'index', '?' => ['published' => 1]]) ?>">Yes</a> | <a href="<?= $this->Url->build(['action' => 'index', '?' => ['published' => 0]]) ?>">No</a>
+    Show only quotes that are published: <a href="<?= $this->Url->build(['action' => 'index', '?' => ['show_hidden' => 0]]) ?>">Yes</a> | <a href="<?= $this->Url->build(['action' => 'index', '?' => ['show_hidden' => 1]]) ?>">No</a>
 </div>
 
 <table>
