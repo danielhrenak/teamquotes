@@ -26,7 +26,9 @@ class ArticlesController extends AppController
     public function index()
     {
         $articlesQuery = $this->Articles->find();
-        if ($this->request->getQuery('published')) {
+        if ($this->request->getQuery('published') && $this->request->getQuery('published') === 0) {
+            
+        } else {
             $articlesQuery->where(['published_until >' => FrozenTime::now()]);
         }
         $articles = $this->Paginator->paginate($articlesQuery);
