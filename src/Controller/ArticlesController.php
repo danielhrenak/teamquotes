@@ -26,8 +26,8 @@ class ArticlesController extends AppController
     public function index()
     {
         $articlesQuery = $this->Articles->find();
-        if ($this->request->getQuery('published') && $this->request->getQuery('published') === 0) {
-            
+        if (!$this->request->getQuery('published')) {
+
         } else {
             $articlesQuery->where(['published_until >' => FrozenTime::now()]);
         }
