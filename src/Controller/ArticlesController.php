@@ -43,7 +43,7 @@ class ArticlesController extends AppController
     public function random()
     {
         $this->viewBuilder()->setLayout('bootstrap');
-        $article = $this->Articles->find()->where(['published' => 1])->order('rand()')->limit(1)->first();
+        $article = $this->Articles->find()->where(['published_until >' => FrozenTime::now()])->order('rand()')->limit(1)->first();
         $this->set(compact('article'));
     }
 
