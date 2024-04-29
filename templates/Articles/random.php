@@ -16,7 +16,7 @@ use Cake\View\View;
                     <div class="card-body p-5">
                         <?php if ($article->image) { ?>
                             <div class="text-center mb-5">
-                            <?= $this->Html->image('upload/' . $article->image, ['alt' => $article->title]) ?>
+                            <?= $this->Html->image('upload/' . $article->image, ['alt' => $article->title, 'width' => '100%']) ?>
                             </div>
                         <?php } else  { ?>
                         <figure class="text-center mb-0">
