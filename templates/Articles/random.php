@@ -13,9 +13,9 @@ use Cake\View\View;
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-12">
                 <div class="card" style="border-radius: 15px;">
-                    <div class="card-body p-5">
+                    <div class="card-body p-6">
                         <?php if ($article->image) { ?>
-                            <div class="text-center mb-5">
+                            <div class="text-center mb-1">
                             <?= $this->Html->image('upload/' . $article->image, ['alt' => $article->title, 'width' => '100%']) ?>
                             </div>
                         <?php } else  { ?>
