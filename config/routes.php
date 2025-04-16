@@ -57,6 +57,8 @@ return static function (RouteBuilder $routes) {
          */
         $builder->connect('/pages/*', 'Pages::display');
 
+        $builder->connect('/sounds', ['controller' => 'Sounds', 'action' => 'index'],['_name' => 'sounds_home']);
+
         $builder->connect('/articles', ['controller' => 'Articles', 'action' => 'index'],['_name' => 'articles_home']);
         $builder->connect('/articles/add', ['controller' => 'Articles', 'action' => 'add'],['_name' =>  'articles_add']);
         $builder->connect('/articles/random', ['controller' => 'Articles', 'action' => 'random'],['_name' =>  'articles_random']);
