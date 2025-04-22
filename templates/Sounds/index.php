@@ -59,10 +59,8 @@ foreach ($sounds as $sound): ?>
 
     // Setup controls for all buttons
 
-    <?php
-    $soundIds = ['drz_hubu', 'wa_wa_wa', 'co_si_spravil', 'leeroy_jenkins'];
-    foreach ($soundIds as $id) { ?>
-        setupAudioControls("playButton<?= $id ?>", "audioPlayer<?= $id ?>", "progressBar<?= $id ?>");
+    <?php foreach ($sounds as $sound) { ?>
+        setupAudioControls("playButton<?= $sound['id'] ?>", "audioPlayer<?= $sound['id'] ?>", "progressBar<?= $sound['id'] ?>");
     <?php } ?>
 
     // Automatically play audio based on query parameter
