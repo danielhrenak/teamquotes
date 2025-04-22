@@ -9,22 +9,25 @@ $title = 'Milujem Pixel';
 $this->assign('title', $title);
 ?>
 
-
 <h1><?= h($title) ?></h1>
 
-<!-- First Button -->
-<button id="playButton1" style="position: relative; width: 150px; height: 40px; overflow: hidden;">
-    Drž hubu
-    <div id="progressBar1" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: rgba(76, 175, 80, 0.5); z-index: 1;"></div>
-</button>
-<audio id="audioPlayer1" src="audio/drz_hubu_ty_buzerant.mp3" preload="auto" style="display:none;"></audio>
+<?php
+$sounds = [
+    ['id' => 'drz_hubu', 'label' => 'Drž hubu', 'src' => 'audio/drz_hubu.mp3'],
+    ['id' => 'wa_wa_wa', 'label' => 'Wa Wa Wa', 'src' => 'audio/wa_wa_wa.mp3'],
+    ['id' => "co_si_spravil", 'label' => 'Čo si spravil?', 'src' => 'audio/co_si_spravil.mp3'],
+    ['id' => 'leeroy_jenkins', 'label' => 'Leeroy Jenkins', 'src' => 'audio/leeroy_jenkins.mp3'],
+];
 
-<!-- Second Button -->
-<button id="playButton2" style="position: relative; width: 150px; height: 40px; overflow: hidden;">
-    Wa Wa Wa
-    <div id="progressBar2" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: rgba(76, 175, 80, 0.5); z-index: 1;"></div>
-</button>
-<audio id="audioPlayer2" src="audio/wa_wa_wa.mp3" preload="auto" style="display:none;"></audio>
+foreach ($sounds as $sound): ?>
+    <button id="playButton<?= $sound['id'] ?>" style="position: relative; width: 150px; height: 40px; overflow: hidden;">
+        <?= h($sound['label']) ?>
+        <div id="progressBar<?= $sound['id'] ?>" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: rgba(76, 175, 80, 0.5); z-index: 1;"></div>
+    </button>
+    <audio id="audioPlayer<?= $sound['id'] ?>" src="<?= h($sound['src']) ?>" preload="auto" style="display:none;"></audio>
+    <a href="?play=<?= $sound['id'] ?>">🔗</a>
+<br>
+<?php endforeach; ?>
 
 <script>
     function setupAudioControls(playButtonId, audioPlayerId, progressBarId) {
@@ -54,7 +57,21 @@ $this->assign('title', $title);
         });
     }
 
-    // Setup controls for both buttons
-    setupAudioControls('playButton1', 'audioPlayer1', 'progressBar1');
-    setupAudioControls('playButton2', 'audioPlayer2', 'progressBar2');
+    // Setup controls for all buttons
+
+    <?php
+    $soundIds = ['drz_hubu', 'wa_wa_wa', 'co_si_spravil', 'leeroy_jenkins'];
+    foreach ($soundIds as $id) { ?>
+        setupAudioControls("playButton<?= $id ?>", "audioPlayer<?= $id ?>", "progressBar<?= $id ?>");
+    <?php } ?>
+
+    // Automatically play audio based on query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const playParam = urlParams.get('play');
+    if (playParam) {
+        const playButton = document.getElementById(`playButton${playParam}`);
+        if (playButton) {
+            playButton.click();
+        }
+    }
 </script>
