@@ -13,7 +13,7 @@ $this->assign('title', $title);
 
 <?php
 $sounds = [
-    ['id' => 'drz_hubu', 'label' => 'Drž hubu', 'src' => 'audio/drz_hubu.mp3'],
+//    ['id' => 'drz_hubu', 'label' => 'Drž hubu', 'src' => 'audio/drz_hubu.mp3'],
     ['id' => 'wa_wa_wa', 'label' => 'Wa Wa Wa', 'src' => 'audio/wa_wa_wa.mp3'],
     ['id' => "co_si_spravil", 'label' => 'Čo si spravil?', 'src' => 'audio/co_si_spravil.mp3'],
     ['id' => 'leeroy_jenkins', 'label' => 'Leeroy Jenkins', 'src' => 'audio/leeroy_jenkins.mp3'],
