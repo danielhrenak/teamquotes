@@ -70,6 +70,9 @@ return static function (RouteBuilder $routes) {
             ->setPass(['articleId']);
         $builder->connect('/articles/{articleId}/add-days/{days}', ['controller' => 'Articles', 'action' => 'addDays'],['_name' =>  'articles_add_days'])
             ->setPass(['articleId', 'days']);
+
+        $builder->connect('/tv', ['controller' => 'Monitoring', 'action' => 'index']);
+        $builder->connect('/tv/{screen_id}', ['controller' => 'Monitoring', 'action' => 'screen'], ['_name' => 'monitoring_screen'])->setPass(['screen_id']);
         /*
          * Connect catchall routes for all controllers.
          *
