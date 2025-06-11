@@ -74,6 +74,11 @@
     </div>
 
     <script>
+        // Refresh the page every hour (3600000 milliseconds)
+        setTimeout(() => {
+            location.reload();
+        }, 3600000);
+
         <?php if ($comment_section_enabled): ?>
         const comments = <?= json_encode($comments); ?>;
         const jokeInterval = 30000; // 5 minutes
