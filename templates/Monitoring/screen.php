@@ -85,22 +85,37 @@
 
         function displayRandomJoke() {
             const jokePopup = document.getElementById('jokePopup');
-            const randomJoke = comments[Math.floor(Math.random() * comments.length)];
             jokePopup.innerHTML = ''; // Clear previous content
 
-            if (randomJoke.category === 'text') {
-                jokePopup.textContent = randomJoke.content;
+            // Calculate total priority
+            const totalPriority = comments.reduce((sum, joke) => sum + joke.priority, 0);
+
+            // Generate a random number between 0 and totalPriority
+            let randomValue = Math.random() * totalPriority;
+
+            // Select a joke based on priority
+            let selectedJoke = null;
+            for (const joke of comments) {
+                randomValue -= joke.priority;
+                if (randomValue <= 0) {
+                    selectedJoke = joke;
+                    break;
+                }
+            }
+
+            if (selectedJoke.category === 'text') {
+                jokePopup.textContent = selectedJoke.content;
                 jokePopup.style.padding = '35px'; // Default padding
-            } else if (randomJoke.category === 'image') {
+            } else if (selectedJoke.category === 'image') {
                 const img = document.createElement('img');
-                img.src = randomJoke.content;
+                img.src = selectedJoke.content;
                 img.style.maxWidth = '100%';
                 img.style.borderRadius = '8px';
                 jokePopup.appendChild(img);
                 jokePopup.style.padding = '10px'; // Default padding
-            } else if (randomJoke.category === 'youtube') {
+            } else if (selectedJoke.category === 'youtube') {
                 const iframe = document.createElement('iframe');
-                iframe.src = `https://www.youtube.com/embed/${randomJoke.content}?autoplay=1`;
+                iframe.src = `https://www.youtube.com/embed/${selectedJoke.content}?autoplay=1`;
                 iframe.width = '560';
                 iframe.height = '200'; // Adjusted height
                 iframe.frameBorder = '0';
@@ -115,7 +130,7 @@
             progressBar.id = 'jokeProgressBar';
             progressBar.style.width = '100%';
             progressBar.style.height = '3px'; // Reduced height
-            progressBar.style.backgroundColor = '#cccccc'; // grey
+            progressBar.style.backgroundColor = '#cccccc'; // Grey
             progressBar.style.transition = `width ${jokeInterval}ms linear`;
             jokePopup.appendChild(progressBar); // Append after joke content
 

@@ -22,7 +22,7 @@ class MonitoringController extends AppController
         // Fetch jokes from the articles table
         $comments = $this->fetchTable('Items')
             ->find()
-            ->select(['content', 'category'])
+            ->select(['content', 'category', 'priority'])
                 ->where(['category IN' => ['text', 'image'], 'screen_id' => $screen_id])
             ->toArray();
 
