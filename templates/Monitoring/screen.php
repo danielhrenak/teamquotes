@@ -81,7 +81,7 @@
 
         <?php if ($comment_section_enabled): ?>
         const comments = <?= json_encode($comments); ?>;
-        const jokeInterval = 30000; // 5 minutes
+        const jokeInterval = 30000;
 
         function displayRandomJoke() {
             const jokePopup = document.getElementById('jokePopup');
@@ -102,6 +102,13 @@
                     break;
                 }
             }
+
+            if (selectedJoke.category === 'empty') {
+                jokePopup.style.display = 'none'; // Hide jokePopup for "empty" category
+                return;
+            }
+
+            jokePopup.style.display = 'block'; // Ensure jokePopup is visible for other categories
 
             if (selectedJoke.category === 'text') {
                 jokePopup.textContent = selectedJoke.content;
@@ -130,7 +137,7 @@
             progressBar.id = 'jokeProgressBar';
             progressBar.style.width = '100%';
             progressBar.style.height = '3px'; // Reduced height
-            progressBar.style.backgroundColor = '#cccccc'; // Grey
+            progressBar.style.backgroundColor = '#4caf50'; 
             progressBar.style.transition = `width ${jokeInterval}ms linear`;
             jokePopup.appendChild(progressBar); // Append after joke content
 
