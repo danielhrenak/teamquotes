@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+iframe {
+    width: 100%;
+    height: 100vh;
+    border: none;
+}
+
+#jokePopup {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(224, 224, 224, 0.8); /* Transparent background */
+    border: 3px solid #000;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    max-width: 600px;
+    z-index: 1000;
+}
+
+#timer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    z-index: 1000;
+}
+
+#progressBar {
+    width: 200px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+#progress {
+    height: 100%;
+    background-color: #4caf50;
+    width: 100%; /* Start fully filled */
+    transition: width 1s linear;
+}
