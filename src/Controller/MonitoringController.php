@@ -23,14 +23,16 @@ class MonitoringController extends AppController
         $comments = $this->fetchTable('Items')
             ->find()
             ->select(['content', 'category'])
-                ->where(['category' => 'text', 'screen_id' => $screen_id])
+                ->where(['category IN' => ['text', 'image'], 'screen_id' => $screen_id])
             ->toArray();
 
         // List of URLs to cycle through
         $urls = $this->fetchTable('Links')
             ->find()
             ->select(['url', 'duration'])
-            ->where(['screen_id' => $screen_id]);
+            ->where(['screen_id' => $screen_id])
+            ->order(['RAND()']);
+
 
         $screen = $this->fetchTable('Screens')->get($screen_id);
 

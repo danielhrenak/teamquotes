@@ -97,7 +97,7 @@
                 img.style.maxWidth = '100%';
                 img.style.borderRadius = '8px';
                 jokePopup.appendChild(img);
-                jokePopup.style.padding = '35px'; // Default padding
+                jokePopup.style.padding = '10px'; // Default padding
             } else if (randomJoke.category === 'youtube') {
                 const iframe = document.createElement('iframe');
                 iframe.src = `https://www.youtube.com/embed/${randomJoke.content}?autoplay=1`;
@@ -148,7 +148,7 @@
         function cyclePages() {
             const iframe = document.getElementById('monitorFrame');
             const currentUrl = urls[currentIndex];
-            const duration = currentUrl.duration * 1000
+            const duration = currentUrl.duration * 1000;
             iframe.src = currentUrl.url;
 
             resetProgressBar(duration);
