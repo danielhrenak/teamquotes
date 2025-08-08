@@ -1,0 +1,183 @@
+body {
+    background: #f4f4f4;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+.edit-card-nav, .form-card, .container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(80,60,160,0.06);
+    min-width: 350px;
+    padding: 32px 28px 24px 28px;
+}
+.edit-card-nav {
+    border: 1px solid #d1c4e9;
+}
+h2 {
+    color: #512da8;
+    margin-bottom: 24px;
+    font-size: 1.35em;
+}
+ol.progress {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin-bottom: 18px;
+}
+ol.progress li {
+    counter-increment: step;
+    padding: 12px 0;
+    font-size: 1.08em;
+    border-bottom: 1px solid #ede7f6;
+}
+ol.progress li:last-child {
+    border: none;
+}
+ol.progress li a {
+    text-decoration: none;
+    color: #512da8;
+    font-weight: 500;
+}
+ol.progress li:before {
+    content: counter(step) ".";
+    color: #a076ff;
+    font-weight: bold;
+    margin-right: 8px;
+}
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.99em;
+}
+.back-link:hover {
+    text-decoration: underline;
+    color: #512da8;
+}
+.step, .step-info {
+    color: #512da8;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.form-card, .container {
+    min-width: 370px;
+    padding: 32px 36px 24px 36px;
+}
+label {
+    font-weight: bold;
+    margin-top: 16px;
+}
+input[type="text"], input[type="url"], textarea {
+    width: 100%;
+    padding: 7px 10px;
+    margin-top: 2px;
+    margin-bottom: 16px;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+input[type="url"] {
+    border: 1.5px solid #a076ff;
+    border-radius: 4px;
+    font-size: 1.04em;
+}
+button, input[type="submit"], .btn {
+    background: #a076ff;
+    color: #fff;
+    border: none;
+    padding: 10px 26px;
+    border-radius: 4px;
+    font-size: 1.07em;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+button:hover, input[type="submit"]:hover, .btn:hover {
+    background: #512da8;
+}
+.save-btn { float: right; }
+.clearfix:after { content: ""; display: table; clear: both; }
+.fav-section-title {
+    margin-top: 10px;
+    color: #a076ff;
+    font-size: 1.05em;
+    font-weight: bold;
+}
+.favorite-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.favorite-group label {
+    min-width: 60px;
+    font-weight: normal;
+    margin: 0;
+}
+.photo-preview {
+    margin-top: 10px;
+    margin-bottom: 18px;
+    text-align: center;
+}
+.photo-preview img {
+    max-width: 90px;
+    max-height: 90px;
+    border: 2px solid #a076ff;
+    border-radius: 6px;
+    object-fit: cover;
+}
+.ai-prompt-box {
+    background: #f3f0ff;
+    border-left: 4px solid #a076ff;
+    padding: 16px 16px 12px 16px;
+    margin-bottom: 22px;
+}
+.ai-prompt-title {
+    color: #673ab7;
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 1.09em;
+}
+
+
+ select {
+     padding: 10px;
+     border: 1px solid #a076ff;
+     border-radius: 5px;
+     font-size: 1em;
+     background-color: #fff;
+     min-width: 220px;
+     margin-bottom: 16px;
+     outline: none;
+     transition: border 0.2s;
+ }
+select:focus {
+    border-color: #512da8;
+}
+/* Prípadne špecificky pre tento formulár */
+.form-card select {
+    width: 100%;
+    max-width: 350px;
+}
+.form-card label {
+    display: block;
+    margin-bottom: 3px;
+    font-weight: 600;
+}
+
+.custom-select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #a076ff;
+    background-color: #f9f8fd;
+    font-size: 1em;
+}
+
+
