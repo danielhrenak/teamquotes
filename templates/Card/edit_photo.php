@@ -15,7 +15,7 @@ $this->setLayout('cardform'); // použije layout/cardform.php
         <div>
             <strong>Postup:</strong><br>
             1. <b>Nájdi svoju fotku</b>, kde je dobre vidieť tvoju tvár.<br>
-            2. Skopíruj tento prompt a vlož ho do AI generátora obrázkov (napr. Microsoft Designer, Bing Copilot, Canva, Playground atď.):<br>
+            2. Skopíruj tento prompt (alebo si vymysli vlastný) a vlož ho do AI generátora obrázkov (napr. Pixel AI Portal, Microsoft Designer, Bing Copilot, Canva, Playground atď.):<br>
             <br>
             <textarea style="width:100%;height:60px;font-size:0.97em;padding:4px;" readonly>
 Remove the background, center the face, add a soft white background, keep a natural look, square format, no watermark.

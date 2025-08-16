@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Hero card – 16 personalities</title>
-    <link rel="stylesheet" href="/css/card.css?v=2">
+    <link rel="stylesheet" href="/css/card.css?v=3">
 </head>
 <body>
 
 <?php
 $typeLabels = [
-    'hra'   => '🎲 Hra',
-    'kniha' => '📚 Kniha',
-    'film'  => '🎬 Film',
-    'hudba' => '🎵 Hudba',
-    'ine'   => '⭐️ Iné'
+    'hra'   => '🎲',
+    'kniha' => '📚',
+    'film'  => '🎬',
+    'hudba' => '🎵',
+    'ine'   => '⭐️'
 ];
 $itemsByType = [];
 if (!empty($employeeCard->favorite_items)) {
@@ -26,36 +26,40 @@ $color = h($employeeCard->personality_type->color ?? '#a076ff');
 
 <!-- Predná strana -->
 <div class="card front hero-card" style="border: 3px solid <?= $color ?>;">
-    <!-- HERO dekoratívne pozadie -->
     <div class="hero-bg"></div>
 
-    <!-- O mne v špeciálnom rámiku hore -->
-    <div class="about hero-about">
-        <?= nl2br(h($employeeCard->about_me)) ?>
-    </div>
-
+    <!-- Fotka v hornej tretine s jemným fade -->
     <div class="front-content">
-        <img src="<?= h($employeeCard->photo_url) ?>"
-             class="photo hero-photo"
-             alt="Fotka zamestnanca"
-             style="border:3px solid <?= $color ?>;">
-        <div>
-            <div class="name hero-name"><?= h(mb_strtoupper($employeeCard->full_name)) ?></div>
+        <div class="photo-wrapper">
+            <img src="<?= h($employeeCard->photo_url) ?>" class="photo hero-photo" alt="Fotka zamestnanca">
+            <div class="photo-overlay"></div>
         </div>
-        <div class="personality-type hero-personality-type" style="color:<?= $color ?>; margin-top: 8px;">
+
+        <div class="name hero-name"><?= h(mb_strtoupper($employeeCard->full_name)) ?></div>
+        <div class="personality-type hero-personality-type" style="color:<?= $color ?>;">
             <?= h($employeeCard->personality_type->code) ?><br/>
             <?= h($employeeCard->personality_type->label) ?>
         </div>
     </div>
 
-    <div class="section-title hero-section-title" style="color:<?= $color ?>;">Obľúbené veci</div>
-    <ul>
-        <?php foreach ($typeLabels as $type => $label): ?>
-            <?php if (!empty($itemsByType[$type])): ?>
-                <li><?= $label ?>: <?= h(implode(', ', $itemsByType[$type])) ?></li>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </ul>
+    <!-- O mne -->
+    <div class="about hero-about">
+        <?= nl2br(h($employeeCard->about_me)) ?>
+    </div>
+
+    <!-- Obľúbené veci v boxe -->
+    <?php if (!empty($itemsByType)): ?>
+        <div class="hero-favorites">
+            <?php foreach ($typeLabels as $type => $label): ?>
+                <?php if (!empty($itemsByType[$type])): ?>
+                    <div class="fav-item">
+                        <span class="fav-label"><?= $label ?></span>
+                        <span class="fav-value"><?= h(implode(', ', $itemsByType[$type])) ?></span>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 </div>
 
 <!-- Zadná strana -->
@@ -75,13 +79,10 @@ $color = h($employeeCard->personality_type->color ?? '#a076ff');
 </div>
 
 <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px;" class="no-print">
-    <a href="/card/edit/<?= h($employeeCard->slug) ?>"
-       class="btn-edit">
+    <a href="/card/edit/<?= h($employeeCard->slug) ?>" class="btn-edit">
         ✏️ Editovať kartičku
     </a>
-    <button type="button"
-            onclick="window.print();"
-            class="btn-print">
+    <button type="button" onclick="window.print();" class="btn-print">
         🖨️ Tlačiť kartičku
     </button>
 </div>

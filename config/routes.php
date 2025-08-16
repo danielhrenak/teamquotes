@@ -77,16 +77,16 @@ return static function (RouteBuilder $routes) {
 
         $builder->connect('/game', ['controller' => 'Game', 'action' => 'index']);
 
-        $builder->connect('/card', ['controller' => 'Card', 'action' => 'index']);
-        $builder->connect('/card/{slug}', ['controller' => 'Card', 'action' => 'index'])
+        $builder->connect('/hero-card', ['controller' => 'Card', 'action' => 'index']);
+        $builder->connect('/hero-card/{slug}', ['controller' => 'Card', 'action' => 'index'])
             ->setPass(['slug']);
-        $builder->connect('/card/{slug}/edit', ['controller' => 'Card', 'action' => 'edit'], ['_name' => 'card_edit'])
+        $builder->connect('/hero-card/{slug}/edit', ['controller' => 'Card', 'action' => 'edit'], ['_name' => 'card_edit'])
             ->setPass(['slug']);
-        $builder->connect('/card/{slug}/edit-name', ['controller' => 'Card', 'action' => 'editName'], ['_name' => 'card_edit_name'])
+        $builder->connect('/hero-card/{slug}/edit-name', ['controller' => 'Card', 'action' => 'editName'], ['_name' => 'card_edit_name'])
             ->setPass(['slug']);
-        $builder->connect('/card/{slug}/edit-photo', ['controller' => 'Card', 'action' => 'editPhoto'], ['_name' => 'card_edit_photo'])
+        $builder->connect('/hero-card/{slug}/edit-photo', ['controller' => 'Card', 'action' => 'editPhoto'], ['_name' => 'card_edit_photo'])
             ->setPass(['slug']);
-        $builder->connect('/card/{slug}/edit-info', ['controller' => 'Card', 'action' => 'editInfo'], ['_name' => 'card_edit_info'])
+        $builder->connect('/hero-card/{slug}/edit-info', ['controller' => 'Card', 'action' => 'editInfo'], ['_name' => 'card_edit_info'])
             ->setPass(['slug']);
 
         $builder->fallbacks();
