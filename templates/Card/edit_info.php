@@ -17,6 +17,9 @@ $remaining = $maxChars - $currentLength;
     <?= $this->Form->create($employeeCard) ?>
 
     <label for="about-me">O mne</label>
+    <p style="font-size: 0.9em; color: #666; margin-bottom: 5px;">
+        Krátky popis o tebe – motto, citát, alebo čokoľvek, čo ťa vystihuje.
+    </p>
     <span style="float:right;color:#888;font-size:0.99em;">
         <span id="aboutMeCharsLeft"><?= $remaining ?></span> znakov zostáva
     </span>
@@ -30,6 +33,9 @@ $remaining = $maxChars - $currentLength;
     ]) ?>
 
     <div class="fav-section-title">Obľúbené diela / ľudia / skupiny / veci</div>
+    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;">
+        Vyplňte 3-5 vecí v každej kategórii, ktoré sú vášmu srdcu blízke.
+    </p>
     <?php foreach ($itemTypes as $type => $label): ?>
         <?php
         $fav = null;

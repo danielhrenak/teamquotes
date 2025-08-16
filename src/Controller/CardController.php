@@ -24,7 +24,7 @@ class CardController extends AppController
             ->where(['EmployeeCards.slug' => $slug])
             ->contain(['FavoriteItems', 'PersonalityTypes'])
             ->first();
-        
+
         // Redirect to edit if personality_type is not set
         if (empty($employeeCard->personality_type)) {
             return $this->redirect(['action' => 'edit', $slug]);
