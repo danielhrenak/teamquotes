@@ -18,7 +18,7 @@ $this->setLayout('cardform'); // použije layout/cardform.php
             2. Skopíruj tento prompt (alebo si vymysli vlastný), <br> vlož ho do AI generátora obrázkov spolu so svojou fotkou <br>
             (napr. Pixel AI Portal, ChatGPT, Microsoft Designer, Bing Copilot, Canva, Playground atď.):<br>
             <br>
-            <textarea style="width:100%;height:60px;font-size:0.97em;padding:4px;" readonly>
+            <textarea style="width:100%;height:100px;font-size:0.97em;padding:4px;" readonly>
 Add a realistic yellow miner’s helmet with a headlamp to the person in the photo. Place a miner’s pickaxe in one hand or over their shoulder. The style should be photorealistic, with natural shadows and lighting. The helmet should be bright yellow and blend naturally onto the person’s head. Add subtle miner details, such as a bit of dust or soot for authenticity. Ensure all additions look seamless with the original image.
             </textarea>
             <br>
