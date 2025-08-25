@@ -22,7 +22,7 @@ class CardController extends AppController
         // Príklad: načítaj prvú existujúcu kartičku (alebo podľa aktuálneho užívateľa)
         $employeeCard = $this->EmployeeCards->find()
             ->where(['EmployeeCards.slug' => $slug])
-            ->contain(['FavoriteItems', 'PersonalityTypes'])
+            ->contain(['PersonalityTypes'])
             ->first();
 
         // Redirect to edit if personality_type is not set
@@ -37,12 +37,7 @@ class CardController extends AppController
             $employeeCard->photo_url = 'https://randomuser.me/api/portraits/men/75.jpg';
             $employeeCard->about = 'Milujem fantasy knihy, rád riešim nové nápady a občas pečiem chlieb.';
             // atď...
-            $employeeCard->favorite_items = [
-                (object)['item_type' => 'hra', 'item_name' => 'D&D, šach'],
-                (object)['item_type' => 'kniha', 'item_name' => 'Hobit'],
-                (object)['item_type' => 'film', 'item_name' => 'Arrival'],
-                (object)['item_type' => 'hudba', 'item_name' => 'The National'],
-            ];
+            $employeeCard->favorite_things = "";
             $employeeCard->personality_type = (object)[
                 'label_code' => 'INFP-A',
                 'label_name' => 'Prostredník',
@@ -123,42 +118,15 @@ class CardController extends AppController
         $this->viewBuilder()->setLayout('cardform');
 
         $employeeCard = $this->EmployeeCards->find()
-            ->contain(['FavoriteItems'])
             ->where(['slug' => $slug])
             ->firstOrFail();
-
-        // Typy pre výber obľúbených vecí
-        $itemTypes = [
-            'hra' => 'Z herného sveta',
-            'kniha' => 'Z knižného sveta',
-            'film' => 'Z filmového sveta',
-            'hudba' => 'Z hudobného sveta',
-            'ine' => 'Z hocakého iného sveta',
-        ];
-
-        // Ak ešte nemá favorite_items, priprav prázdne entity pre každý typ
-        if (empty($employeeCard->favorite_items)) {
-            foreach (array_keys($itemTypes) as $type) {
-                $favoriteItem = $this->EmployeeCards->FavoriteItems->newEmptyEntity();
-                $favoriteItem->item_type = $type;
-                $employeeCard->favorite_items[] = $favoriteItem;
-            }
-        }
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
 
-            // Filtrovanie prázdnych položiek
-            if (!empty($data['favorite_items'])) {
-                $data['favorite_items'] = array_filter($data['favorite_items'], function ($item) {
-                    return !empty($item['item_value']);
-                });
-            }
-
             $employeeCard = $this->EmployeeCards->patchEntity(
                 $employeeCard,
-                $data,
-                ['associated' => ['FavoriteItems']]
+                $data
             );
             if ($this->EmployeeCards->save($employeeCard)) {
                 // Presmeruj napr. na prehliadku karty/slugu
@@ -167,7 +135,7 @@ class CardController extends AppController
             $this->Flash->error('Nepodarilo sa uložiť, skontrolujte údaje.');
         }
 
-        $this->set(compact('employeeCard', 'itemTypes'));
+        $this->set(compact('employeeCard'));
     }
 
 

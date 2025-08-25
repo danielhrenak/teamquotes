@@ -17,12 +17,6 @@ class EmployeeCardsTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        // Define the association with FavoriteItems
-        $this->hasMany('FavoriteItems', [
-            'foreignKey' => 'employee_card_id',
-            'className' => 'App\Model\Table\FavoriteItemsTable'
-        ]);
-
         // Define the association with PersonalityTypes
         $this->belongsTo('PersonalityTypes', [
             'foreignKey' => 'personality_type_id',

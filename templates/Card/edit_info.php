@@ -18,7 +18,8 @@ $remaining = $maxChars - $currentLength;
 
     <label for="about-me">O mne</label>
     <p style="font-size: 0.9em; color: #666; margin-bottom: 5px;">
-        Krátky popis o tebe – motto, citát, alebo čokoľvek, čo ťa vystihuje.
+        <b>Minimálne dve</b> zaujímavosti o tebe. <br>
+        Niečo, čo sa o tebe možno všeobecne nevie, ale čo by mohlo ostatných zaujímať. <br>
     </p>
     <span style="float:right;color:#888;font-size:0.99em;">
         <span id="aboutMeCharsLeft"><?= $remaining ?></span> znakov zostáva
@@ -32,39 +33,19 @@ $remaining = $maxChars - $currentLength;
         'id' => 'about-me'
     ]) ?>
 
-    <div class="fav-section-title">Obľúbené diela / ľudia / skupiny / veci</div>
+    <div class="fav-section-title">Obľúbené jedlo / ľudia / skupiny / veci / kultúra / whatever</div>
     <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;">
-        Vyplňte 3-5 vecí v každej kategórii, ktoré sú vášmu srdcu blízke.
+        Vyplňte aspoň 5 obľúbených vecí, ktoré ťa vystihujú. <br> Môže byť aj viac, buď co najkonkrétnejší. <br>
     </p>
-    <?php foreach ($itemTypes as $type => $label): ?>
-        <?php
-        $fav = null;
-        if (!empty($employeeCard->favorite_items)) {
-            foreach ($employeeCard->favorite_items as $item) {
-                if ($item->item_type === $type) {
-                    $fav = $item;
-                    break;
-                }
-            }
-        }
-        ?>
-        <div class="favorite-group">
-            <label for="fav-<?= h($type) ?>"><?= h($label) ?>:</label>
-            <?= $this->Form->control("favorite_items.{$type}.item_value", [
-                'label' => false,
-                'value' => $fav ? $fav->item_value : '',
-                'id' => "fav-{$type}"
-            ]) ?>
-            <?= $this->Form->hidden("favorite_items.{$type}.item_type", [
-                'value' => $type
-            ]) ?>
-            <?php if ($fav && $fav->id): ?>
-                <?= $this->Form->hidden("favorite_items.{$type}.id", [
-                    'value' => $fav->id
-                ]) ?>
-            <?php endif; ?>
-        </div>
-    <?php endforeach; ?>
+    <?= $this->Form->control('favorite_things', [
+        'label' => false,
+        'type' => 'textarea',
+        'rows' => 4,
+        'maxlength' => $maxChars,
+        'placeholder' => 'Tvoje obľúbené veci (napr. jedlo, knihy, filmy, hudba, osobnosti atď.)',
+        'id' => 'favorite_things-me'
+    ]) ?>
+
 
     <div class="clearfix">
         <?= $this->Form->button('Uložiť a pokračovať', ['class' => 'save-btn']) ?>

@@ -15,13 +15,15 @@ $this->setLayout('cardform'); // použije layout/cardform.php
         <div>
             <strong>Postup:</strong><br>
             1. <b>Nájdi svoju fotku</b>, kde je dobre vidieť tvoju tvár.<br>
-            2. Skopíruj tento prompt (alebo si vymysli vlastný) a vlož ho do AI generátora obrázkov (napr. Pixel AI Portal, Microsoft Designer, Bing Copilot, Canva, Playground atď.):<br>
+            2. Skopíruj tento prompt (alebo si vymysli vlastný), <br> vlož ho do AI generátora obrázkov spolu so svojou fotkou <br>
+            (napr. Pixel AI Portal, ChatGPT, Microsoft Designer, Bing Copilot, Canva, Playground atď.):<br>
             <br>
             <textarea style="width:100%;height:60px;font-size:0.97em;padding:4px;" readonly>
-Remove the background, center the face, add a soft white background, keep a natural look, square format, no watermark.
+Add a realistic yellow miner’s helmet with a headlamp to the person in the photo. Place a miner’s pickaxe in one hand or over their shoulder. The style should be photorealistic, with natural shadows and lighting. The helmet should be bright yellow and blend naturally onto the person’s head. Add subtle miner details, such as a bit of dust or soot for authenticity. Ensure all additions look seamless with the original image.
             </textarea>
             <br>
-            3. <b>Stiahni upravenú fotku</b> a nahraj ju na Google Disk, Imgur alebo iné úložisko.<br>
+            3. <b>Stiahni upravenú fotku</b> a nahraj ju na Google Disk,
+            <a href="https://imgbb.com">imgbb</a>, <a href="https://freeimage.host">freeimage</a> alebo iné obľúbené úložisko.<br>
             4. <b>Skopíruj URL adresu obrázka</b> a vlož ju do poľa nižšie.<br>
         </div>
     </div>

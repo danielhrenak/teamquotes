@@ -47,19 +47,9 @@ $color = h($employeeCard->personality_type->color ?? '#a076ff');
         <?= nl2br(h($employeeCard->about_me)) ?>
     </div>
 
-    <!-- Obľúbené veci v boxe -->
-    <?php if (!empty($itemsByType)): ?>
-        <div class="hero-favorites">
-            <?php foreach ($typeLabels as $type => $label): ?>
-                <?php if (!empty($itemsByType[$type])): ?>
-                    <div class="fav-item">
-                        <span class="fav-label"><?= $label ?></span>
-                        <span class="fav-value"><?= h(implode(', ', $itemsByType[$type])) ?></span>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
+   <div class="about hero-about" style="font-size: 0.85em; color: #888; margin-top: 10px;">
+       <?= nl2br(h($employeeCard->favorite_things)) ?>
+   </div>
 </div>
 
 <!-- Zadná strana -->
