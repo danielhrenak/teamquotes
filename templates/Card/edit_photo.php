@@ -14,7 +14,7 @@ $this->setLayout('cardform'); // použije layout/cardform.php
         <div class="ai-prompt-title">Ako upraviť fotku pomocou AI?</div>
         <div>
             <strong>Postup:</strong><br>
-            1. <b>Nájdi svoju fotku</b>, kde je dobre vidieť tvoju tvár.<br>
+            1. <b>Nájdi svoju fotku</b>, kde je dobre vidieť tvoju tvár (napríklad v HR toole svoju fotku).<br>
             2. Skopíruj tento prompt (alebo si vymysli vlastný), <br> vlož ho do AI generátora obrázkov spolu so svojou fotkou <br>
             (napr. Pixel AI Portal, ChatGPT, Microsoft Designer, Bing Copilot, Canva, Playground atď.):<br>
             <br>
