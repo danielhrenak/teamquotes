@@ -43,13 +43,17 @@ $color = h($employeeCard->personality_type->color ?? '#a076ff');
     </div>
 
     <!-- O mne -->
-    <div class="about hero-about">
-        <?= nl2br(h($employeeCard->about_me)) ?>
-    </div>
+    <?php if (!empty($employeeCard->about_me)) { ?>
+        <div class="about hero-about">
+            <?= nl2br(h($employeeCard->about_me)) ?>
+        </div>
+    <?php } ?>
 
-   <div class="about hero-about" style="font-size: 0.85em; color: #888; margin-top: 10px;">
-       <?= nl2br(h($employeeCard->favorite_things)) ?>
-   </div>
+    <?php if (!empty($employeeCard->favorite_things)) { ?>
+        <div class="about hero-about" style="font-size: 0.85em; color: #888; margin-top: 10px;">
+           <?= nl2br(h($employeeCard->favorite_things)) ?>
+        </div>
+    <?php } ?>
 </div>
 
 <!-- Zadná strana -->
