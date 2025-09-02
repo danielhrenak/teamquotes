@@ -88,6 +88,8 @@ return static function (RouteBuilder $routes) {
             ->setPass(['slug']);
         $builder->connect('/hero-card/{slug}/edit-info', ['controller' => 'Card', 'action' => 'editInfo'], ['_name' => 'card_edit_info'])
             ->setPass(['slug']);
+        // File: config/routes.php
+        $builder->connect('/hero-card/list', ['controller' => 'Card', 'action' => 'list'], ['_name' => 'card_list']);
 
         $builder->fallbacks();
     });

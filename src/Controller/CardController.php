@@ -138,5 +138,14 @@ class CardController extends AppController
         $this->set(compact('employeeCard'));
     }
 
+    // File: src/Controller/CardController.php
+    public function list()
+    {
+        $this->loadModel('EmployeeCards'); // Load the EmployeeCards model
+        $employeeCards = $this->EmployeeCards->find('all'); // Fetch all employee cards
+
+        $this->set(compact('employeeCards')); // Pass data to the view
+    }
+
 
 }
