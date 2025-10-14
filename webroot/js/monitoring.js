@@ -28,7 +28,10 @@ function showJokePopup(jokePopup) {
 }
 
 function displayTextJoke(jokePopup, content) {
-    jokePopup.textContent = content;
+    const div = document.createElement('div');
+    div.className = 'jokeText';
+    div.textContent = content;
+    jokePopup.appendChild(div);
     jokePopup.style.padding = '35px';
 }
 

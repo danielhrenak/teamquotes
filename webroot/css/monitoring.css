@@ -13,11 +13,10 @@ iframe {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    background-color: rgba(224, 224, 224, 0.8);
-    border: 3px solid #000;
+    background-color: rgba(224, 224, 224, 0.5);
     border-radius: 12px;
     padding: clamp(8px, 2vw, 20px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
     font-family: Arial, sans-serif;
     font-size: 24px;
     z-index: 1000;
@@ -49,6 +48,12 @@ iframe {
     max-height: 100%;
     max-width: min(100%, 90vw);
     object-fit: contain;
+}
+
+#jokePopup .jokeText {
+    margin-top: 10px;
+    font-size: clamp(16px, 2vw, 24px);
+    color: #333;
 }
 
 #timer {
