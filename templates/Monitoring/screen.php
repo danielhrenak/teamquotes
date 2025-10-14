@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitoring Cycle</title>
-    <link rel="stylesheet" href="/css/monitoring.css">
+    <link rel="stylesheet" href="/css/monitoring.css?v=4.0">
 </head>
 <body>
     <iframe id="monitorFrame"></iframe>

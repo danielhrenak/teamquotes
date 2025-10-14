@@ -13,15 +13,42 @@ iframe {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    background-color: rgba(224, 224, 224, 0.8); /* Transparent background */
+    background-color: rgba(224, 224, 224, 0.8);
     border: 3px solid #000;
     border-radius: 12px;
-    padding: 35px;
+    padding: clamp(8px, 2vw, 20px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     font-family: Arial, sans-serif;
     font-size: 24px;
-    max-width: 600px;
     z-index: 1000;
+
+    /* ensure height so top is at viewport midpoint (50vh) */
+    /* height = 50vh - bottom_offset (20px) */
+    height: calc(50vh - 20px);
+
+    /* width remains flexible but limited so it doesn't overflow */
+    max-width: 90vw;
+    box-sizing: border-box;
+
+    display: inline-block;
+    width: auto;
+
+    /* prevent popup growing past its set height */
+    overflow: hidden;
+
+    text-align: center;
+}
+
+#jokePopup img {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+
+    /* fit the image into the popup content area */
+    max-height: 100%;
+    max-width: min(100%, 90vw);
+    object-fit: contain;
 }
 
 #timer {
